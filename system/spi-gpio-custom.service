@@ -1,0 +1,13 @@
+[Unit]
+Description=SPI GPIO-based custom bus configuration service
+
+[Service]
+Type=forking
+ExecStart=/usr/sbin/gpio-custom-bus-modprobe /etc/spi-gpio-custom.d /usr/lib/spi-gpio-custom-filter.sh spi-gpio-custom
+ExecStop=/sbin/modprobe -r spi-gpio-custom
+TimeoutSec=0
+RemainAfterExit=yes
+GuessMainPID=no
+
+[Install]
+WantedBy=sysinit.target

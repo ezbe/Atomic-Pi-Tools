@@ -1,0 +1,23 @@
+var NAVTREEINDEX0 =
+{
+"bios.html":[1],
+"bios.html#bios_issues":[1,0],
+"bios.html#bios_pxe":[1,0,1],
+"bios.html#bios_rtc":[1,0,0],
+"bios.html#bios_targets":[1,0,2],
+"bno055.html":[3],
+"bno055.html#bno055_use_node":[3,0],
+"bno055.html#bno055_use_python":[3,1],
+"bus.html":[4],
+"gpio.html":[2],
+"gpio.html#gpio_addressing":[2,0],
+"gpio.html#gpio_description":[2,1],
+"gpio.html#gpio_use_node":[2,3],
+"gpio.html#gpio_use_python":[2,4],
+"gpio.html#gpio_use_shell":[2,2],
+"index.html":[],
+"index.html":[0],
+"open_source.html":[6],
+"pages.html":[],
+"support.html":[5]
+};

@@ -1,0 +1,43 @@
+#!/bin/sh
+
+. /usr/lib/atomicpi.sh
+
+printf 'AtomicPi basic openocd sysfs JTAG configuration generator\n' >&2
+
+if ! atomicpi_gpio_hardware; then
+    printf 'WARNING: Not running on an actual Atomic Pi!' >&2
+fi
+
+printf 'Enter TCK GPIO (0-7): ' >&2
+read GPIO
+eval TCK_GPIO='$ATOMICPI_ISH_GPIO_'$GPIO
+
+printf 'Enter TMS GPIO (0-7): ' >&2
+read GPIO
+eval TMS_GPIO='$ATOMICPI_ISH_GPIO_'$GPIO
+
+printf 'Enter TDI GPIO (0-7): ' >&2
+read GPIO
+eval TDI_GPIO='$ATOMICPI_ISH_GPIO_'$GPIO
+
+printf 'Enter TDO GPIO (0-7): ' >&2
+read GPIO
+eval TDO_GPIO='$ATOMICPI_ISH_GPIO_'$GPIO
+
+printf 'Enter TRST GPIO (0-7): ' >&2
+read GPIO
+eval TRST_GPIO='$ATOMICPI_ISH_GPIO_'$GPIO
+
+printf 'Writing basic configuration to standard output\n' >&2
+
+cat <<EOF
+interface sysfsgpio
+transport select jtag
+
+sysfsgpio_tck_num $TCK_GPIO
+sysfsgpio_tms_num $TMS_GPIO
+sysfsgpio_tdi_num $TDI_GPIO
+sysfsgpio_tdo_num $TDO_GPIO
+sysfsgpio_trst_num $TRST_GPIO
+
+EOF

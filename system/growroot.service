@@ -1,0 +1,12 @@
+[Unit]
+Description=Automatic root filesystem resizer
+
+[Service]
+Type=forking
+ExecStart=/usr/sbin/growroot
+TimeoutSec=0
+RemainAfterExit=yes
+GuessMainPID=no
+
+[Install]
+WantedBy=sysinit.target

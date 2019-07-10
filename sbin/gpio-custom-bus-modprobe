@@ -1,0 +1,21 @@
+#!/bin/sh
+DIR="$1"; shift
+FILTER="$1"; shift
+CMDLINE=""
+BUS_IDX=0
+. "$FILTER"
+for F in "$DIR"/*; do
+    if [ -e "$F" ]; then
+        for ITEM in `sed -e 's/#.*//g' "$F"`; do
+            if check_gpio_bus_configuration `echo $ITEM |tr , ' '`; then
+                CMDLINE="$CMDLINE bus$BUS_IDX=$ITEM"
+                BUS_IDX=$(($BUS_IDX+1))
+            else
+                echo "Rejecting $ITEM ($F)" >&2
+            fi
+        done
+    fi
+done
+if [ -n "$CMDLINE" ]; then
+    /sbin/modprobe "$@" $CMDLINE
+fi

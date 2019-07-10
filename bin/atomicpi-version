@@ -1,0 +1,2 @@
+#!/bin/sh
+echo "Atomic Pi v. `cat /usr/share/atomicpi-version.txt`"

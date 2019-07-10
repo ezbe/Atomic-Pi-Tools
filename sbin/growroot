@@ -1,0 +1,22 @@
+#!/bin/sh
+set -e
+ROOTDEV="$1"
+if [ -z "$ROOTDEV" ]; then
+    ROOTDEV=`grep -o "\broot=[^ ]*\b" /proc/cmdline | sed -e 's@^root=LABEL=@root=/dev/disk/by-label/@g;s@^root=UUID=@root=/dev/disk/by-uuid/@g;s@^root=@@g'`
+
+    if echo "$ROOTDEV" | grep -qs '^/dev/disk/by-uuid/.*[A-F]'; then
+        ROOTDEV=`echo "$ROOTDEV" | tr '[:upper:]' '[:lower:]'`
+    fi
+fi
+
+ROOTDEV=`readlink -f "$ROOTDEV"`
+ROOTDEVNAME=`basename "$ROOTDEV"`
+ROOTDEVBLOCK=`readlink -f /sys/class/block/"$ROOTDEVNAME"`
+ROOTDEVPART="`cat ${ROOTDEVBLOCK}/partition`"
+
+if [ -n "$ROOTDEVPART" ]; then
+    ROOTDEVBLOCKPARENT=`dirname "$ROOTDEVBLOCK"`
+    ROOTDEVBASE=`basename "$ROOTDEVBLOCKPARENT"`
+    growpart -u on "/dev/$ROOTDEVBASE" "$ROOTDEVPART" || true
+fi
+resize2fs "$ROOTDEV" || true

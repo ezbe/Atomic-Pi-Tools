@@ -1,0 +1,48 @@
+{
+  "name": "wcwidth.js",
+  "version": "1.0.0",
+  "description": "a javascript porting of C's wcwidth()",
+  "author": {
+    "name": "Woong Jun",
+    "email": "woong.jun@gmail.com",
+    "url": "http://code.woong.org/"
+  },
+  "contributors": [
+    {
+      "name": "Tim Oxley",
+      "email": "secoif@gmail.com",
+      "url": "http://campjs.com/"
+    }
+  ],
+  "homepage": "http://code.woong.org/wcwidth.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mycoboco/wcwidth.js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mycoboco/wcwidth.js/issues",
+    "email": "woong.jun@gmail.com"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "defaults": "^1.0.0"
+  },
+  "devDependencies": {
+    "tape": "^2.13.4"
+  },
+  "engines": { "node": ">=0.8.0" },
+  "licenses": "MIT",
+  "keywords": [
+    "wide character", "wc",
+    "wide character string", "wcs",
+    "terminal", "width",
+    "wcwidth", "wcswidth"
+  ],
+  "directories": {
+    "doc": "doc",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "tape test/*.js"
+  }
+}

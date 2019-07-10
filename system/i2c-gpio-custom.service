@@ -1,0 +1,13 @@
+[Unit]
+Description=I2C GPIO-based custom bus configuration service
+
+[Service]
+Type=forking
+ExecStart=/usr/sbin/gpio-custom-bus-modprobe /etc/i2c-gpio-custom.d /usr/lib/i2c-gpio-custom-filter.sh i2c-gpio-custom
+ExecStop=/sbin/modprobe -r i2c-gpio-custom
+TimeoutSec=0
+RemainAfterExit=yes
+GuessMainPID=no
+
+[Install]
+WantedBy=sysinit.target

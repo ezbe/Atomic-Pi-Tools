@@ -1,0 +1,12 @@
+[Unit]
+Description=Configure EFI to boot the same device on next boot
+
+[Service]
+Type=forking
+ExecStart=/usr/sbin/efi-keep-current-boot
+TimeoutSec=0
+RemainAfterExit=yes
+GuessMainPID=no
+
+[Install]
+WantedBy=sysinit.target

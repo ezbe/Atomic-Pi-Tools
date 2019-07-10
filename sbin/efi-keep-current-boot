@@ -1,0 +1,2 @@
+#!/bin/sh
+efibootmgr  | awk 'BEGIN {curboot="";nextboot=""} /^BootCurrent:/ {curboot=$2;next} /^BootNext:/ {nextboot=$2;next}  END { if (curboot!="" && nextboot=="") system("efibootmgr -n "curboot); }'
