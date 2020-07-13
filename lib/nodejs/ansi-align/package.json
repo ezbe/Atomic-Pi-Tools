@@ -38,6 +38,6 @@
     "coveralls": "^2.13.1",
     "nyc": "^10.3.0",
     "standard": "^10.0.2",
-    "standard-version": "^4.0.0"
+    "standard-version": "^8.0.1"
   }
 }
